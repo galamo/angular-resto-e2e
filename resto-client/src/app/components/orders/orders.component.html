@@ -1,0 +1,50 @@
+<div style="width: 1000px;margin:auto auto">
+    <h1>
+        Orders Page
+
+    </h1>
+    <button (click)="getOrders()" mat-button>Refresh</button>
+    <table style="width: 100%;" mat-table [dataSource]="orders" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="orderNumber">
+            <th mat-header-cell *matHeaderCellDef> Order No </th>
+            <td style="cursor: pointer;" mat-cell *matCellDef="let element"
+                routerLink="/order-details/{{element.orderNumber}}">
+                {{element.orderNumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="orderOwner">
+            <th mat-header-cell *matHeaderCellDef> Order Owner </th>
+            <td mat-cell *matCellDef="let element"> {{element.orderOwner}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fromHour">
+            <th mat-header-cell *matHeaderCellDef> From </th>
+            <td mat-cell *matCellDef="let element"> {{element.fromHour}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="toHour">
+            <th mat-header-cell *matHeaderCellDef> To </th>
+            <td mat-cell *matCellDef="let element"> {{element.toHour}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="reservations">
+            <th mat-header-cell *matHeaderCellDef> Reservations </th>
+            <td mat-cell *matCellDef="let element"> {{element.reservations}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="day">
+            <th mat-header-cell *matHeaderCellDef> Day </th>
+            <td mat-cell *matCellDef="let element"> {{element.day}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element"> <button (click)="deleteOrder(element.orderNumber)"
+                    mat-button>X</button> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

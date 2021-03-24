@@ -9,8 +9,15 @@ import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+
 import { MatIconModule } from "@angular/material/icon"
-import { MatToolbarModule } from "@angular/material/toolbar"
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatTableModule } from "@angular/material/table";
+
+import { MatButtonModule } from "@angular/material/button"
+import { OrdersComponent } from './components/orders/orders.component';
+import { OrderDetailsComponent } from './components/order-details/order-details.component'
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -19,15 +26,19 @@ import { MatToolbarModule } from "@angular/material/toolbar"
     RegisterComponent,
     HomeComponent,
     NotFoundComponent,
-    NavBarComponent
+    NavBarComponent,
+    OrdersComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatToolbarModule
-
+    MatToolbarModule,
+    MatTableModule,
+    HttpClientModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
