@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
+import { BaseURL } from '..';
 
-const BASE_URL = "http://localhost:5000"
 const ORDERS_PATH = "/orders"
 
 @Injectable({
@@ -12,7 +12,7 @@ export class OrdersService {
   constructor(private httpClient: HttpClient) { }
 
   getOrders() {
-    return this.httpClient.get(`${BASE_URL}${ORDERS_PATH}`).toPromise()
+    return this.httpClient.get(`${BaseURL}${ORDERS_PATH}`).toPromise()
   }
 
 }

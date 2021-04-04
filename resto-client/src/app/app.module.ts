@@ -18,6 +18,7 @@ import { MatButtonModule } from "@angular/material/button"
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component'
 import { HttpClientModule } from "@angular/common/http";
+import { RestaurantsComponent } from './components/restaurants/restaurants.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HttpClientModule } from "@angular/common/http";
     NotFoundComponent,
     NavBarComponent,
     OrdersComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    RestaurantsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,8 @@
 const express = require("express")
 const cors = require("cors")
+const axios = require("axios")
+
+const countriesBseURL = "https://restcountries.eu/rest/v2/all";
 
 const app = express()
 app.use(cors())
@@ -39,6 +42,20 @@ app.get("/orders", (req, res, next) => {
     return res.json(orders)
 })
 
+app.get("/restaurants", async (req, res, next) => {
+    const restaurants = [{ name: "beach", country: "USA" },
+    { name: "Roof", country: "ISR" },
+    { name: "Port", country: "ISR" }]
+
+    const { data: countriesFromApi } = await axios.get(countriesBseURL)
+    const restaurantsWithFlags = restaurants.map(rest => { return _restWithFlag(rest) })
+    function _restWithFlag(rest) {
+        const currentCountry = countriesFromApi.find(country => country.alpha3Code === rest.country)
+        return { ...rest, flag: currentCountry && currentCountry.flag }
+    }
+    console.log(restaurantsWithFlags)
+    res.json(restaurantsWithFlags)
+})
 
 app.listen(5000)
 

@@ -3,6 +3,6 @@
 
 
 ## EX2
-- getOrders - connect server to DB
-- delete order operation from DB
+- getOrders - connect server to DB - connection to DB
+- delete order operation from DB 
 - after deletion - show a popup message + fetch all the relevant orders 

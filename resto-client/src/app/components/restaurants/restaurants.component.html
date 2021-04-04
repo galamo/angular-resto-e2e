@@ -1,0 +1,28 @@
+<div style="width: 1000px;margin:auto auto">
+    <h1>
+        Orders Page
+
+    </h1>
+
+    <table style="width: 100%;" mat-table [dataSource]="restaurants" class="mat-elevation-z8">
+
+
+        <ng-container matColumnDef="restaurantName">
+            <th mat-header-cell *matHeaderCellDef> restaurant Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="country">
+            <th mat-header-cell *matHeaderCellDef> country </th>
+            <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="flag">
+            <th mat-header-cell *matHeaderCellDef> Flag </th>
+            <td mat-cell *matCellDef="let element"> <img height="100" width="100" [src]=element.flag /> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
