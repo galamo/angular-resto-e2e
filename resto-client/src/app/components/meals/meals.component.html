@@ -3,17 +3,8 @@
         Orders Page
 
     </h1>
-    <input [(ngModel)]="filterModel" (keyup)="filterOperation($event.target.value)" />
     <button (click)="getOrders()" mat-button>Refresh</button>
-
-
-    <!-- <div>
-        <div *ngFor="let o of orders | filter : filterModel:'orderNumber'">{{o.orderOwner}} </div>
-    </div> -->
-
-
-
-    <table style="width: 100%;" mat-table [dataSource]="filteredOrders" class="mat-elevation-z8">
+    <table style="width: 100%;" mat-table [dataSource]="orders" class="mat-elevation-z8">
 
         <ng-container matColumnDef="orderNumber">
             <th mat-header-cell *matHeaderCellDef> Order No </th>
@@ -23,7 +14,7 @@
         </ng-container>
 
         <ng-container matColumnDef="orderOwner">
-            <th mat-header-cell *matHeaderCellDef> Order Owner </th>
+            <th mat-header-cell *matHeaderCellDef> mealId </th>
             <td mat-cell *matCellDef="let element"> {{element.orderOwner}} </td>
         </ng-container>
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router"
 
+
 import { OrdersService } from "../../services/orderService/orders.service"
 
 interface IOrder {
@@ -18,9 +19,12 @@ interface IOrder {
 })
 export class OrdersComponent implements OnInit {
   public orders: any;
+  public filteredOrders: any
   public displayedColumns: Array<string>;
+  public filterModel: string
   constructor(private router: Router, private ordersService: OrdersService) {
     this.displayedColumns = ["orderNumber", "fromHour", "toHour", "orderOwner", "reservations", "day", "actions"]
+    this.filterModel = ""
 
   }
   ngOnInit(): void {
@@ -31,8 +35,14 @@ export class OrdersComponent implements OnInit {
   }
   async getOrders() {
     this.orders = await this.ordersService.getOrders();
+    this.filteredOrders = this.orders;
   }
   goToOrder(orderNumber: number) {
     this.router.navigate([`/order-details/${orderNumber}`])
+  }
+
+  filterOperation(inputValue: string) {
+    const filteredOrders = this.orders.filter(item => item["orderNumber"].toString().includes(inputValue))
+    this.filteredOrders = filteredOrders;
   }
 }

@@ -19,7 +19,8 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component'
 import { HttpClientModule } from "@angular/common/http";
 import { RestaurantsComponent } from './components/restaurants/restaurants.component';
-
+import { FormsModule } from "@angular/forms"
+import { FilterPipe } from './pipes/filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { RestaurantsComponent } from './components/restaurants/restaurants.compo
     NavBarComponent,
     OrdersComponent,
     OrderDetailsComponent,
-    RestaurantsComponent
+    RestaurantsComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { RestaurantsComponent } from './components/restaurants/restaurants.compo
     MatToolbarModule,
     MatTableModule,
     HttpClientModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
