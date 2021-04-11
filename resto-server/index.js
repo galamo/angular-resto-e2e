@@ -45,7 +45,11 @@ app.get("/orders", (req, res, next) => {
 app.get("/restaurants", async (req, res, next) => {
     const restaurants = [{ name: "beach", country: "USA" },
     { name: "Roof", country: "ISR" },
-    { name: "Port", country: "ISR" }]
+    { name: "Time", country: "BEL" },
+    { name: "Center", country: "EGY" },
+    { name: "Port", country: "ISR" }, { name: "South", country: "ISR" }
+        , { name: "East-Tasty", country: "AFK" }]
+    // const restaurants = [{ name: "beach", country: "DEN" }]
 
     const { data: countriesFromApi } = await axios.get(countriesBseURL)
     const restaurantsWithFlags = restaurants.map(rest => { return _restWithFlag(rest) })
@@ -54,7 +58,7 @@ app.get("/restaurants", async (req, res, next) => {
         return { ...rest, flag: currentCountry && currentCountry.flag }
     }
     console.log(restaurantsWithFlags)
-    res.json([])
+    res.json(restaurantsWithFlags)
 })
 
 app.listen(5000)
