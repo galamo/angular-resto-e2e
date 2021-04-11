@@ -16,4 +16,18 @@
 - Image
 - youtube - film 
 
+## EX 4 + HomeWork
+1. Add Checkbox Outside to Orders Page:
+- When checkbox is checked the table will present only the Outside orders.
+- when checkbox is not checked the table will present All the values (Outside/Inside)
+
+2. Create Button: <mat-slide-toggle> to performa a change in the UI
+- Restuarants page: Toggle between Table and Cards view
+- When toggle button is on - show cards
+- When toggle button is of - show table
+
+3. Read about pagination in Tables - Angular material
+
+4. Advanced - implement pagination with Angular table -> based on your data in the server 
+
 

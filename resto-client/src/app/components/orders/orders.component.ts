@@ -57,10 +57,7 @@ export class OrdersComponent implements OnInit {
   }
 
   filterOperation(inputValue: string) {
-    console.log(this.selectedValue, "selectedValueselectedValue")
     const newPipe = new FilterPipe()
     this.filteredOrders = newPipe.transform(this.orders, inputValue, this.selectedValue)
-    // const filteredOrders = this.orders.filter(item => item["orderNumber"].toString().includes(inputValue))
-    // this.filteredOrders = filteredOrders;
   }
 }
