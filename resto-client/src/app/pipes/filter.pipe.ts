@@ -13,3 +13,10 @@ export class FilterPipe implements PipeTransform {
   }
 
 }
+
+// class Person {
+//   sayHi(a) { return a + 1 }
+// }
+
+// const p = new Person();
+// p.sayHi(1);

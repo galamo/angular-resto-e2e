@@ -5,7 +5,13 @@
     </h1>
     <input [(ngModel)]="filterModel" (keyup)="filterOperation($event.target.value)" />
     <button (click)="getOrders()" mat-button>Refresh</button>
+    <mat-form-field appearance="fill">
+        <mat-label>Search By</mat-label>
+        <mat-select [(value)]="selectedValue">
+            <mat-option *ngFor="let column of listOfCoulmnsModel" [value]="column.value"> {{column.label}} </mat-option>
 
+        </mat-select>
+    </mat-form-field>
 
     <!-- <div>
         <div *ngFor="let o of orders | filter : filterModel:'orderNumber'">{{o.orderOwner}} </div>
@@ -45,6 +51,11 @@
         <ng-container matColumnDef="day">
             <th mat-header-cell *matHeaderCellDef> Day </th>
             <td mat-cell *matCellDef="let element"> {{element.day}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="isOutside">
+            <th mat-header-cell *matHeaderCellDef> Outside </th>
+            <td mat-cell *matCellDef="let element"> {{element.isOutside}} </td>
         </ng-container>
 
         <ng-container matColumnDef="actions">

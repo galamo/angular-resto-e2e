@@ -14,6 +14,8 @@ import { MatIconModule } from "@angular/material/icon"
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTableModule } from "@angular/material/table";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner"
+import { MatFormFieldModule } from "@angular/material/form-field"
+import { MatSelectModule } from "@angular/material/select"
 
 import { MatButtonModule } from "@angular/material/button"
 import { OrdersComponent } from './components/orders/orders.component';
@@ -45,7 +47,9 @@ import { FilterPipe } from './pipes/filter.pipe';
     HttpClientModule,
     MatButtonModule,
     FormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

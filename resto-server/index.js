@@ -14,14 +14,16 @@ app.get("/orders", (req, res, next) => {
         toHour: "21:00",
         orderOwner: "Hilal",
         reservations: 10,
-        day: new Date().toLocaleDateString()
+        day: new Date().toLocaleDateString(),
+        isOutside: true,
     }, {
         orderNumber: 22222,
         fromHour: "20:00",
         toHour: "22:00",
         orderOwner: "Sapir",
         reservations: 1,
-        day: new Date().toLocaleDateString()
+        day: new Date().toLocaleDateString(),
+        isOutside: true,
     },
     {
         orderNumber: 22222,
@@ -29,7 +31,8 @@ app.get("/orders", (req, res, next) => {
         toHour: "22:00",
         orderOwner: "Sapir",
         reservations: 1,
-        day: new Date().toLocaleDateString()
+        day: new Date().toLocaleDateString(),
+        isOutside: true,
     },
     {
         orderNumber: 22222,
@@ -37,7 +40,17 @@ app.get("/orders", (req, res, next) => {
         toHour: "22:00",
         orderOwner: "Sapir",
         reservations: 1,
-        day: new Date().toLocaleDateString()
+        day: new Date().toLocaleDateString(),
+        isOutside: false,
+    },
+    {
+        orderNumber: 34353,
+        fromHour: "10:00",
+        toHour: "12:00",
+        orderOwner: "Raafa",
+        reservations: 12,
+        day: new Date().toLocaleDateString(),
+        isOutside: true,
     }]
     return res.json(orders)
 })

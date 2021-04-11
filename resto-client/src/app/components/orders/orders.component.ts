@@ -13,6 +13,14 @@ interface IOrder {
   day: string,
 }
 
+const listOfColumns = [{ label: "Order number", value: "orderNumber" },
+{ label: "From Hour", value: "fromHour" },
+{ label: "To Hour", value: "toHour" },
+{ label: "Owner", value: "orderOwner" },
+{ label: "Number of reservations", value: "reservations" },
+{ label: "Reservation Day", value: "day" },
+{ label: "Outside", value: "isOutside" }]
+
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -23,9 +31,13 @@ export class OrdersComponent implements OnInit {
   public filteredOrders: any
   public displayedColumns: Array<string>;
   public filterModel: string
+  public listOfCoulmnsModel: Array<any>;
+  public selectedValue: string;
   constructor(private router: Router, private ordersService: OrdersService) {
-    this.displayedColumns = ["orderNumber", "fromHour", "toHour", "orderOwner", "reservations", "day", "actions"]
+    this.listOfCoulmnsModel = listOfColumns;
+    this.displayedColumns = [...listOfColumns.map(item => item.value), "actions"]
     this.filterModel = ""
+    this.selectedValue = listOfColumns[0].value
 
   }
   ngOnInit(): void {
@@ -45,7 +57,10 @@ export class OrdersComponent implements OnInit {
   }
 
   filterOperation(inputValue: string) {
-    const filteredOrders = this.orders.filter(item => item["orderNumber"].toString().includes(inputValue))
-    this.filteredOrders = filteredOrders;
+    console.log(this.selectedValue, "selectedValueselectedValue")
+    const newPipe = new FilterPipe()
+    this.filteredOrders = newPipe.transform(this.orders, inputValue, this.selectedValue)
+    // const filteredOrders = this.orders.filter(item => item["orderNumber"].toString().includes(inputValue))
+    // this.filteredOrders = filteredOrders;
   }
 }
