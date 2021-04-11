@@ -1,10 +1,13 @@
 <div style="width: 1000px;margin:auto auto">
     <h1>
         Orders Page
-
     </h1>
-
-    <table style="width: 100%;" mat-table [dataSource]="restaurants" class="mat-elevation-z8">
+    <div *ngIf="!restaurants" style="width: 20px; margin:auto auto;">
+        <mat-spinner></mat-spinner>
+    </div>
+    <h2 *ngIf="restaurants?.length === 0"> No Data </h2>
+    <table *ngIf="restaurants?.length > 0" style="width: 100%;" mat-table [dataSource]="restaurants"
+        class="mat-elevation-z8">
 
 
         <ng-container matColumnDef="restaurantName">

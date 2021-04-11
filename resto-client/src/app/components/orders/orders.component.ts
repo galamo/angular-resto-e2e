@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router"
+import { FilterPipe } from 'src/app/pipes/filter.pipe';
 
 
 import { OrdersService } from "../../services/orderService/orders.service"
@@ -31,6 +32,8 @@ export class OrdersComponent implements OnInit {
     this.getOrders()
   }
   deleteOrder(a) {
+
+
     // call service ; pass order number ; service will send to the server deletion operation 
   }
   async getOrders() {

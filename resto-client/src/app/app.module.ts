@@ -13,6 +13,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MatIconModule } from "@angular/material/icon"
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTableModule } from "@angular/material/table";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner"
 
 import { MatButtonModule } from "@angular/material/button"
 import { OrdersComponent } from './components/orders/orders.component';
@@ -43,7 +44,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     MatTableModule,
     HttpClientModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -54,7 +54,7 @@ app.get("/restaurants", async (req, res, next) => {
         return { ...rest, flag: currentCountry && currentCountry.flag }
     }
     console.log(restaurantsWithFlags)
-    res.json(restaurantsWithFlags)
+    res.json([])
 })
 
 app.listen(5000)

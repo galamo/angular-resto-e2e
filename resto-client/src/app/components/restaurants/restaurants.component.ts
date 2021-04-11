@@ -10,7 +10,8 @@ export class RestaurantsComponent implements OnInit {
   public displayedColumns: Array<string>;
   public restaurants: Array<any>;
   constructor(private restaurantsService: RestaurantService) {
-    this.restaurants = [];
+    this.restaurants = null;
+    // this.isLoading = this.restaurants.length;
     this.displayedColumns = ["restaurantName", "country", "flag"]
   }
 
