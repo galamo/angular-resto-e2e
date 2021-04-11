@@ -1,7 +1,12 @@
 const _localStorageKey = "data.restaurants"
 export const getRestaurantsLS = () => {
     const restString = window.localStorage.getItem(_localStorageKey);
-    const restArray = JSON.parse(restString)
+    let restArray = [];
+    try {
+        restArray = JSON.parse(restString);
+    } catch (ex) {
+        console.log(ex)
+    }
     return restArray;
 }
 
