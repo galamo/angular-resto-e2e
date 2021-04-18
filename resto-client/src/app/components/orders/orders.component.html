@@ -67,4 +67,8 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <div>
+        <button (click)="getOrders()" mat-button>Prev</button>
+        <button (click)="getOrders()" style="float: right;" mat-button>Next</button>
+    </div>
 </div>

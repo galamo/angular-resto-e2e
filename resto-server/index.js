@@ -8,8 +8,12 @@ const app = express()
 app.use(cors())
 
 app.get("/orders", (req, res, next) => {
+    let { from, limit } = req.query;
+    console.log("start", from)
+    console.log("end", from + limit)
+    // "select * from orders LIMIT ${limit} OFFSET ${from} "
     const orders = [{
-        orderNumber: 11111,
+        orderNumber: 0,
         fromHour: "20:00",
         toHour: "21:00",
         orderOwner: "Hilal",
@@ -17,7 +21,7 @@ app.get("/orders", (req, res, next) => {
         day: new Date().toLocaleDateString(),
         isOutside: true,
     }, {
-        orderNumber: 22222,
+        orderNumber: 1,
         fromHour: "20:00",
         toHour: "22:00",
         orderOwner: "Sapir",
@@ -26,7 +30,7 @@ app.get("/orders", (req, res, next) => {
         isOutside: true,
     },
     {
-        orderNumber: 22222,
+        orderNumber: 2,
         fromHour: "20:00",
         toHour: "22:00",
         orderOwner: "Sapir",
@@ -35,7 +39,7 @@ app.get("/orders", (req, res, next) => {
         isOutside: true,
     },
     {
-        orderNumber: 22222,
+        orderNumber: 3,
         fromHour: "20:00",
         toHour: "22:00",
         orderOwner: "Sapir",
@@ -44,7 +48,7 @@ app.get("/orders", (req, res, next) => {
         isOutside: false,
     },
     {
-        orderNumber: 34353,
+        orderNumber: 4,
         fromHour: "10:00",
         toHour: "12:00",
         orderOwner: "Raafa",
@@ -52,7 +56,9 @@ app.get("/orders", (req, res, next) => {
         day: new Date().toLocaleDateString(),
         isOutside: true,
     }]
-    return res.json(orders)
+    if (limit >= 100) limit = 1;
+    if (!from && !limit) return res.json(orders)
+    return res.json(orders.slice(Number(from), Number(from) + Number(limit)))
 })
 
 app.get("/restaurants", async (req, res, next) => {
