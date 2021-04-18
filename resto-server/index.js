@@ -55,6 +55,33 @@ app.get("/orders", (req, res, next) => {
         reservations: 12,
         day: new Date().toLocaleDateString(),
         isOutside: true,
+    },
+    {
+        orderNumber: 5,
+        fromHour: "10:00",
+        toHour: "12:00",
+        orderOwner: "Raafa",
+        reservations: 12,
+        day: new Date().toLocaleDateString(),
+        isOutside: true,
+    },
+    {
+        orderNumber: 6,
+        fromHour: "10:00",
+        toHour: "12:00",
+        orderOwner: "Raafa",
+        reservations: 12,
+        day: new Date().toLocaleDateString(),
+        isOutside: true,
+    },
+    {
+        fromHour: "10:00",
+        orderNumber: 7, 
+        toHour: "12:00",
+        orderOwner: "Raafa",
+        reservations: 12,
+        day: new Date().toLocaleDateString(),
+        isOutside: true,
     }]
     if (limit >= 100) limit = 1;
     if (!from && !limit) return res.json(orders)

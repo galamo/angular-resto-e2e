@@ -4,7 +4,7 @@ import { FilterPipe } from 'src/app/pipes/filter.pipe';
 
 
 import { OrdersService } from "../../services/orderService/orders.service"
-
+const CLIENT_DATA_LIMIT = 3
 interface IOrder {
   orderNumber: number,
   orderOwner: string,
@@ -33,12 +33,15 @@ export class OrdersComponent implements OnInit {
   public filterModel: string
   public listOfCoulmnsModel: Array<any>;
   public selectedValue: string;
+  public from: number;
+  public limit: number;
   constructor(private router: Router, private ordersService: OrdersService) {
     this.listOfCoulmnsModel = listOfColumns;
     this.displayedColumns = [...listOfColumns.map(item => item.value), "actions"]
     this.filterModel = ""
     this.selectedValue = listOfColumns[0].value
-
+    this.limit = CLIENT_DATA_LIMIT;
+    this.from = 0;
   }
   ngOnInit(): void {
     this.getOrders()
@@ -49,11 +52,21 @@ export class OrdersComponent implements OnInit {
     // call service ; pass order number ; service will send to the server deletion operation 
   }
   async getOrders() {
-    this.orders = await this.ordersService.getOrders();
+    this.orders = await this.ordersService.getOrders(this.from, this.limit);
     this.filteredOrders = this.orders;
   }
   goToOrder(orderNumber: number) {
     this.router.navigate([`/order-details/${orderNumber}`])
+  }
+  async prev() {
+    if (this.from - this.limit < 0) return;
+    this.from = this.from - this.limit
+    this.getOrders()
+  }
+  async next() {
+    if (this.orders.length < this.limit) return;
+    this.from = this.from + this.limit
+    this.getOrders()
   }
 
   filterOperation(inputValue: string) {

@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    localStorage.setItem("token", "1234")
   }
 
 }

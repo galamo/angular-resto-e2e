@@ -11,8 +11,9 @@ export class OrdersService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getOrders() {
-    return this.httpClient.get(`${BaseURL}${ORDERS_PATH}`).toPromise()
+  getOrders(from?: number, limit?: number) {
+    const queryParams = from >= 0 && limit ? `?from=${from}&limit=${limit}` : "";
+    return this.httpClient.get(`${BaseURL}${ORDERS_PATH}${queryParams}`).toPromise()
   }
 
 }
