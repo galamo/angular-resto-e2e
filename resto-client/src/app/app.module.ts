@@ -25,6 +25,8 @@ import { RestaurantsComponent } from './components/restaurants/restaurants.compo
 import { FormsModule } from "@angular/forms"
 import { FilterPipe } from './pipes/filter.pipe';
 import { LogoutComponent } from './components/logout/logout.component';
+import { HoverDirective } from './directives/hover.directive';
+import { CopymeDirective } from './directives/copyme.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,9 @@ import { LogoutComponent } from './components/logout/logout.component';
     OrderDetailsComponent,
     RestaurantsComponent,
     FilterPipe,
-    LogoutComponent
+    LogoutComponent,
+    HoverDirective,
+    CopymeDirective
   ],
   imports: [
     BrowserModule,

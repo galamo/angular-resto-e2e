@@ -31,3 +31,9 @@
 4. Advanced - implement pagination with Angular table -> based on your data in the server 
 
 
+
+
+## HomeWork
+- use CanLoad Guard to implement Lazy load with certain component.
+- use canActivate to restrict user which dont have access to a specific component ( isAdmin )
+- Create your own directive - onover will increase font size 
