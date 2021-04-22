@@ -3,15 +3,19 @@ const cors = require("cors")
 const axios = require("axios")
 
 const countriesBseURL = "https://restcountries.eu/rest/v2/all";
+const cookieParser = require("cookie-parser")
 
 const app = express()
-app.use(cors())
+app.use(cookieParser())
+// app.use(cors())
+app.use(express.static("public"))
 
 app.get("/orders", (req, res, next) => {
     let { from, limit } = req.query;
     console.log("start", from)
     console.log("end", from + limit)
     // "select * from orders LIMIT ${limit} OFFSET ${from} "
+    res.cookie("token_angular", 1234566)
     const orders = [{
         orderNumber: 0,
         fromHour: "20:00",
@@ -76,7 +80,7 @@ app.get("/orders", (req, res, next) => {
     },
     {
         fromHour: "10:00",
-        orderNumber: 7, 
+        orderNumber: 7,
         toHour: "12:00",
         orderOwner: "Raafa",
         reservations: 12,
@@ -89,6 +93,7 @@ app.get("/orders", (req, res, next) => {
 })
 
 app.get("/restaurants", async (req, res, next) => {
+    console.log("new cookies based angular app are ", req.cookies)
     const restaurants = [{ name: "beach", country: "USA" },
     { name: "Roof", country: "ISR" },
     { name: "Time", country: "BEL" },
@@ -103,7 +108,7 @@ app.get("/restaurants", async (req, res, next) => {
         const currentCountry = countriesFromApi.find(country => country.alpha3Code === rest.country)
         return { ...rest, flag: currentCountry && currentCountry.flag }
     }
-    console.log(restaurantsWithFlags)
+
     res.json(restaurantsWithFlags)
 })
 
