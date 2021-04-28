@@ -7,6 +7,10 @@ const CarsSchema = new mongoose.Schema({
     Name: {
         type: String,
         required: true
+    },
+    Horsepower: {
+        type: Number,
+        required: true
     }
 
 });

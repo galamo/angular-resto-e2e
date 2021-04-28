@@ -51,3 +51,12 @@
 - Open NodeJS Application
 - Open NodeJs - MongoDB Connection
 - Run some Find query 
+
+
+
+# Homework
+- insert orders data into the MongoDB
+- query the Mongodb Database and present the data form the collection
+- how to load the initial data ? if collection is empty? insert data otherwise continue ( dont insert)
+- advanced - implement Edit order page.
+ 

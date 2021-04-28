@@ -6,10 +6,14 @@ const createConnection = require("./connection/index")
 const countriesBseURL = "https://restcountries.eu/rest/v2/all";
 const cookieParser = require("cookie-parser")
 const carsModel = require("./models/carsSchema")
+const bodyParser = require("body-parser")
+
 const app = express()
 app.use(cookieParser())
 app.use(cors())
 app.use(express.static("public"))
+
+app.use(bodyParser.json())
 
 
 createConnection();
@@ -25,12 +29,26 @@ app.get("/cars", async (req, res, next) => {
     }
 
 })
-app.get("/createCar", async (req, res, next) => {
-    const newCar = new carsModel({ lp: 111111, Name: "Mazda" })
+app.post("/cars", async (req, res, next) => {
+
     try {
-        // const result = await carsModel.find({});
+        const { Name, Horsepower } = req.body;
+        const newCar = new carsModel({ Name, Horsepower });
         const result = await newCar.save()
         res.json({ message: "ok", result })
+    } catch (ex) {
+        console.log("Data is not Availble", ex)
+        res.send("Something went wrong")
+    }
+
+})
+
+app.put("/cars", async (req, res, next) => {
+    try {
+        const { Name } = req.body;
+        const result = await carsModel.updateOne({ Name: "MRCDS" }, { $set: { Name } })
+        console.log(result)
+        res.json({ message: "updated" })
     } catch (ex) {
         console.log("Data is not Availble", ex)
         res.send("Something went wrong")
