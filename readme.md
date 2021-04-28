@@ -37,3 +37,17 @@
 - use CanLoad Guard to implement Lazy load with certain component.
 - use canActivate to restrict user which dont have access to a specific component ( isAdmin )
 - Create your own directive - onover will increase font size 
+
+
+
+
+
+
+# MongoDB Connection
+- Start & Configure Mongo Server 
+- Create Connection ( Studio 3T )
+- Create Database 
+- Create Test Collection 
+- Open NodeJS Application
+- Open NodeJs - MongoDB Connection
+- Run some Find query 

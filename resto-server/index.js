@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser")
 const carsModel = require("./models/carsSchema")
 const app = express()
 app.use(cookieParser())
-// app.use(cors())
+app.use(cors())
 app.use(express.static("public"))
 
 
@@ -24,8 +24,20 @@ app.get("/cars", async (req, res, next) => {
         res.send("Something went wrong")
     }
 
+})
+app.get("/createCar", async (req, res, next) => {
+    const newCar = new carsModel({ lp: 111111, Name: "Mazda" })
+    try {
+        // const result = await carsModel.find({});
+        const result = await newCar.save()
+        res.json({ message: "ok", result })
+    } catch (ex) {
+        console.log("Data is not Availble", ex)
+        res.send("Something went wrong")
+    }
 
 })
+
 app.get("/orders", (req, res, next) => {
     let { from, limit } = req.query;
     console.log("start", from)
@@ -39,7 +51,7 @@ app.get("/orders", (req, res, next) => {
         orderOwner: "Hilal",
         reservations: 10,
         day: new Date().toLocaleDateString(),
-        isOutside: true,
+        isOutside: false,
     }, {
         orderNumber: 1,
         fromHour: "20:00",
