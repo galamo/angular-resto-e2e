@@ -1,15 +1,31 @@
+require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
 const axios = require("axios")
-
+const createConnection = require("./connection/index")
 const countriesBseURL = "https://restcountries.eu/rest/v2/all";
 const cookieParser = require("cookie-parser")
-
+const carsModel = require("./models/carsSchema")
 const app = express()
 app.use(cookieParser())
 // app.use(cors())
 app.use(express.static("public"))
 
+
+createConnection();
+
+app.get("/cars", async (req, res, next) => {
+
+    try {
+        const result = await carsModel.find({});
+        res.json({ message: "ok", result })
+    } catch (ex) {
+        console.log("Data is not Availble", ex)
+        res.send("Something went wrong")
+    }
+
+
+})
 app.get("/orders", (req, res, next) => {
     let { from, limit } = req.query;
     console.log("start", from)
