@@ -1,35 +1,52 @@
 require("dotenv").config()
-const express = require("express")
-const cors = require("cors")
-const axios = require("axios")
-const createConnection = require("./connection/index")
-const countriesBseURL = "https://restcountries.eu/rest/v2/all";
-const cookieParser = require("cookie-parser")
-const bodyParser = require("body-parser")
-
-//Routes
-const restRouter = require("./routes/restaurants")
-const app = express()
-
-app.use(cookieParser())
-app.use(cors())
-app.use(express.static("public"))
-
-app.use(bodyParser.json())
-
-
+const createConnection = require("../connection/index");
+const orderModel = require("../models/orderSchema");
+const restModel = require("../models/restSchema");
 createConnection();
 
+setTimeout(() => {
+    insertRestaruantsToDB()
+    insertOrdersToDB()
+}, 1000);
 
-app.use("/rest", restRouter)
 
-app.get("/orders", (req, res, next) => {
-    let { from, limit } = req.query;
-    console.log("start", from)
-    console.log("end", from + limit)
-    // "select * from orders LIMIT ${limit} OFFSET ${from} "
-    res.cookie("token_angular", 1234566)
-    const orders = [{
+async function insertRestaruantsToDB() {
+    try {
+        const resultFind = await restModel.find();
+        if (resultFind.length) return;
+        const result = await restModel.insertMany(getRestData());
+        console.log(result)
+    } catch (ex) {
+        console.log(ex)
+    } finally {
+        // process.exit(0)
+    }
+}
+
+async function insertOrdersToDB() {
+    try {
+        const resultFind = await orderModel.find();
+        if (resultFind.length) return;
+        const result = await orderModel.insertMany(getOrdersData());
+        console.log(result)
+    } catch (ex) {
+        console.log(ex)
+    } finally {
+        // process.exit(0)
+    }
+}
+
+function getRestData() {
+    return [{ name: "beach", country: "USA" },
+    { name: "Roof", country: "ISR" },
+    { name: "Time", country: "BEL" },
+    { name: "Center", country: "EGY" },
+    { name: "Port", country: "ISR" }, { name: "South", country: "ISR" }
+        , { name: "East-Tasty", country: "AFK" }]
+}
+
+function getOrdersData() {
+    return [{
         orderNumber: 0,
         fromHour: "20:00",
         toHour: "21:00",
@@ -37,6 +54,7 @@ app.get("/orders", (req, res, next) => {
         reservations: 10,
         day: new Date().toLocaleDateString(),
         isOutside: false,
+        
     }, {
         orderNumber: 1,
         fromHour: "20:00",
@@ -100,12 +118,4 @@ app.get("/orders", (req, res, next) => {
         day: new Date().toLocaleDateString(),
         isOutside: true,
     }]
-    if (limit >= 100) limit = 1;
-    if (!from && !limit) return res.json(orders)
-    return res.json(orders.slice(Number(from), Number(from) + Number(limit)))
-})
-
-
-app.listen(5000)
-
-
+}

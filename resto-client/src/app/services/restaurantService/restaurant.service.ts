@@ -4,7 +4,7 @@ import { BaseURL } from '..';
 
 
 
-const restaurants_PATH = "/restaurants"
+const restaurants_PATH = "/rest"
 
 
 @Injectable({
