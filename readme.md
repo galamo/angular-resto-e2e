@@ -60,3 +60,7 @@
 - how to load the initial data ? if collection is empty? insert data otherwise continue ( dont insert)
 - advanced - implement Edit order page.
  
+
+
+# Homework
+- Create An Angular Page for Reservations.
