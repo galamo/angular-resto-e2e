@@ -26,8 +26,9 @@ async function insertRestaruantsToDB() {
 async function insertOrdersToDB() {
     try {
         const resultFind = await orderModel.find();
-        if (resultFind.length) return;
-        const result = await orderModel.insertMany(getOrdersData());
+        const restResult = await restModel.find();
+        // if (resultFind.length) return;
+        const result = await orderModel.insertMany(getOrdersData(restResult[3]._id));
         console.log(result)
     } catch (ex) {
         console.log(ex)
@@ -45,7 +46,7 @@ function getRestData() {
         , { name: "East-Tasty", country: "AFK" }]
 }
 
-function getOrdersData() {
+function getOrdersData(id) {
     return [{
         orderNumber: 0,
         fromHour: "20:00",
@@ -54,7 +55,8 @@ function getOrdersData() {
         reservations: 10,
         day: new Date().toLocaleDateString(),
         isOutside: false,
-        
+        restaurant: id
+
     }, {
         orderNumber: 1,
         fromHour: "20:00",
@@ -63,6 +65,7 @@ function getOrdersData() {
         reservations: 1,
         day: new Date().toLocaleDateString(),
         isOutside: true,
+        restaurant: id
     },
     {
         orderNumber: 2,
@@ -72,6 +75,7 @@ function getOrdersData() {
         reservations: 1,
         day: new Date().toLocaleDateString(),
         isOutside: true,
+        restaurant: id
     },
     {
         orderNumber: 3,
@@ -81,6 +85,7 @@ function getOrdersData() {
         reservations: 1,
         day: new Date().toLocaleDateString(),
         isOutside: false,
+        restaurant: id
     },
     {
         orderNumber: 4,
@@ -90,6 +95,7 @@ function getOrdersData() {
         reservations: 12,
         day: new Date().toLocaleDateString(),
         isOutside: true,
+        restaurant: id
     },
     {
         orderNumber: 5,
@@ -99,6 +105,7 @@ function getOrdersData() {
         reservations: 12,
         day: new Date().toLocaleDateString(),
         isOutside: true,
+        restaurant: id
     },
     {
         orderNumber: 6,
@@ -108,6 +115,7 @@ function getOrdersData() {
         reservations: 12,
         day: new Date().toLocaleDateString(),
         isOutside: true,
+        restaurant: id
     },
     {
         fromHour: "10:00",
@@ -117,5 +125,6 @@ function getOrdersData() {
         reservations: 12,
         day: new Date().toLocaleDateString(),
         isOutside: true,
+        restaurant: id
     }]
 }

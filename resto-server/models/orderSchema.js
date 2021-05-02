@@ -31,8 +31,8 @@ const orderSchema = new mongoose.Schema({
         required: false
     },
     restaurant: { // Maybe we will change this one!
-        type: String,
-        required: false
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "restaurants"
     }
 });
 const OrderModel = mongoose.model("orders", orderSchema)
